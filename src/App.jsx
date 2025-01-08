@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
       <Header />
-      <PhotosPage />
+      <ProductsPage />
       <Footer />
     </div>
   );
