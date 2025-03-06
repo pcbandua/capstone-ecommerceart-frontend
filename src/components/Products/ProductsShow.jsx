@@ -16,6 +16,7 @@ export function ProductsShow({ product, variant }) {
             <p>Size: {variant.print_size}</p>
           </div>
         ))}
+        <button>Add to cart</button>
       </div>
     </>
   );

@@ -7,6 +7,8 @@ import { ProductsPage } from "./components/Products/ProductsPage";
 import { CartPage } from "./components/Products/CartPage";
 import { Footer } from "./Footer";
 import axios from "axios";
+import { OrdersShow } from "./components/Products/OrdersShow";
+import { ArtistIndex } from "./Artists/ArtistsIndex";
 
 const router = createBrowserRouter([
   {
@@ -21,11 +23,15 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <ProductsPage />,
+        hydrateFallback: () => null,
         loader: () =>
           axios
-            .get("http:localhost:3000/products.json")
+            .get("http://localhost:3000/products.json")
             .then((response) => response.data)
-            .catch((error) => console.log(error)),
+            .catch((error) => {
+              console.log(error);
+              return []; // Return an empty array if the request fails
+            }),
       },
       {
         path: "/signup",
@@ -38,11 +44,41 @@ const router = createBrowserRouter([
       {
         path: "/cartpage",
         element: <CartPage />,
+        hydrateFallback: () => null,
         loader: () =>
           axios
-            .get("http:localhost:3000/carted_products.json")
+            .get("http://localhost:3000/carted_products.json")
             .then((response) => response.data)
-            .catch((error) => console.log(error)),
+            .catch((error) => {
+              console.log(error);
+              return []; // Return an empty array if the request fails
+            }),
+      },
+      {
+        path: "/orders/:id",
+        element: <OrdersShow />,
+        hydrateFallback: () => null,
+        loader: ({ params }) =>
+          axios
+            .get(`http://localhost:3000/orders/${params.id}.json`)
+            .then((response) => response.data)
+            .catch((error) => {
+              console.log(error);
+              return []; // Return an empty array if the request fails
+            }),
+      },
+      {
+        path: "/artists",
+        element: <ArtistIndex />,
+        hydrateFallback: () => null,
+        loader: () =>
+          axios
+            .get("http://localhost:3000/artists.json")
+            .then((response) => response.data)
+            .catch((error) => {
+              console.log(error);
+              return []; // Return an empty array if the request fails
+            }),
       },
     ],
   },

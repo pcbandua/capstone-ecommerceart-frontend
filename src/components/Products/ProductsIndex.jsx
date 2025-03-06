@@ -6,7 +6,7 @@ export function ProductsIndex({ products, artist, onShow }) {
         {products.map((product) => (
           <div key={product.id}>
             <h2>{product.artpiece_name}</h2>
-            <div class="image">
+            <div className="image">
               <img src={product.image_url} alt={product.artpiece_name} />
             </div>
             <p>Description: {product.description}</p>
