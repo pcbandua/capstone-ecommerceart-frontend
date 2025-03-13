@@ -5,15 +5,15 @@ export function ArtistIndex({ onShow }) {
   console.log(artist);
 
   // const cartedProducts = artist.carted_products || [];
-  // const artists = artist.id[] || [];
+  // const artists = artist[0] || [];
 
-  console.log(artist.id);
+  // console.log(artists);
 
   return (
     <>
       <div>
         <h1>All Current Artists</h1>
-        {artists.map((artist) => (
+        {artist.map((artist) => (
           <div key={artist.id}>
             <h2>{artist.artist_name}</h2>
             <div className="image">

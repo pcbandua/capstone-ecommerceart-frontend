@@ -9,6 +9,7 @@ import { Footer } from "./Footer";
 import axios from "axios";
 import { OrdersShow } from "./components/Products/OrdersShow";
 import { ArtistIndex } from "./Artists/ArtistsIndex";
+import { OrdersIndex } from "./components/Products/OrdersIndex";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,19 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           axios
             .get(`http://localhost:3000/orders/${params.id}.json`)
+            .then((response) => response.data)
+            .catch((error) => {
+              console.log(error);
+              return []; // Return an empty array if the request fails
+            }),
+      },
+      {
+        path: "/orders",
+        element: <OrdersIndex />,
+        hydrateFallback: () => null,
+        loader: ({ params }) =>
+          axios
+            .get("http://localhost:3000/orders.json")
             .then((response) => response.data)
             .catch((error) => {
               console.log(error);
