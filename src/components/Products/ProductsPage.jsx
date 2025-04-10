@@ -44,7 +44,7 @@ export function ProductsPage() {
   return (
     <main>
       <ProductsIndex products={products} onShow={handleShow} />;
-      <ProductsNew onCreate={handleCreate} />
+      {/* <ProductsNew onCreate={handleCreate} /> */}
       <Modal show={isProductsShowVisible} onClose={handleClose}>
         <ProductsShow product={currentProduct} />
       </Modal>

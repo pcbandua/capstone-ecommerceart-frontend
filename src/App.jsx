@@ -10,6 +10,7 @@ import axios from "axios";
 import { OrdersShow } from "./components/Products/OrdersShow";
 import { ArtistIndex } from "./Artists/ArtistsIndex";
 import { OrdersIndex } from "./components/Products/OrdersIndex";
+import { ProductsNew } from "./components/Products/ProductsNew";
 
 const router = createBrowserRouter([
   {
@@ -88,6 +89,19 @@ const router = createBrowserRouter([
         loader: () =>
           axios
             .get("http://localhost:3000/artists.json")
+            .then((response) => response.data)
+            .catch((error) => {
+              console.log(error);
+              return []; // Return an empty array if the request fails
+            }),
+      },
+      {
+        path: "/products/new",
+        element: <ProductsNew />,
+        hydrateFallback: () => null,
+        loader: () =>
+          axios
+            .post("http://localhost:3000/products.json")
             .then((response) => response.data)
             .catch((error) => {
               console.log(error);
