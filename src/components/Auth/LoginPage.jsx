@@ -13,6 +13,7 @@ export function LoginPage() {
     event.preventDefault();
     setErrors([]);
     const params = new FormData(event.target);
+    console.log("params", params.values());
     axios
       .post("http://localhost:3000/sessions.json", params)
       .then((response) => {
@@ -33,7 +34,7 @@ export function LoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
       <div
         id="login"
-        className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"
+        className="mx-auto w-2xl max-w-4xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"
       >
         <div>
           <h1 className="font-sans text-4xl font-bold py-4">Login</h1>
@@ -50,6 +51,14 @@ export function LoginPage() {
                   class="block text-gray-700 text-sm font-bold mb-2"
                   for="username"
                 >
+                  <div className="flex justify-center mb-8">
+                    {/* Swap in your logo path or component */}
+                    <img
+                      src="/logo.png"
+                      alt="Your Logo"
+                      className="h-16 w-auto"
+                    />
+                  </div>
                   Email
                 </label>
                 <input
@@ -57,6 +66,7 @@ export function LoginPage() {
                   id="Email"
                   type="text"
                   placeholder="Email"
+                  name="email"
                 ></input>
               </div>
               <div class="mb-4">
@@ -71,6 +81,7 @@ export function LoginPage() {
                   id="Password"
                   type="text"
                   placeholder="Password"
+                  name="password"
                 ></input>
               </div>
               <div className="mb-4">
